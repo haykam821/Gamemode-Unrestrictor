@@ -1,0 +1,12 @@
+{
+	"required": true,
+	"package": "io.github.haykam821.gamemodeunrestrictor.mixin",
+	"compatibilityLevel": "JAVA_8",
+	"client": [
+		"GameModeSelectionScreenMixin",
+		"KeyboardMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}
