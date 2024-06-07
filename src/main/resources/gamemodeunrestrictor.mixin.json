@@ -4,8 +4,10 @@
 	"compatibilityLevel": "JAVA_8",
 	"client": [
 		"GameModeSelectionScreenMixin",
+		"GameModeSelectionScreenMixinOld",
 		"KeyboardMixin"
 	],
+	"plugin": "io.github.haykam821.gamemodeunrestrictor.GamemodeUnrestrictorMixinConfigPlugin",
 	"injectors": {
 		"defaultRequire": 1
 	}
