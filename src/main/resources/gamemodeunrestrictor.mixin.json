@@ -5,7 +5,9 @@
 	"client": [
 		"GameModeSelectionScreenMixin",
 		"GameModeSelectionScreenMixinOld",
-		"KeyboardMixin"
+		"GameModeSelectionScreenMixinOld2",
+		"KeyboardMixin",
+		"KeyboardMixinOld"
 	],
 	"plugin": "io.github.haykam821.gamemodeunrestrictor.GamemodeUnrestrictorMixinConfigPlugin",
 	"injectors": {

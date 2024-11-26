@@ -21,10 +21,15 @@ import net.fabricmc.loader.api.metadata.version.VersionPredicate;
 public class GamemodeUnrestrictorMixinConfigPlugin implements IMixinConfigPlugin {
 	private static final String MIXIN_CLASS_PREFIX = "io.github.haykam821.gamemodeunrestrictor.mixin.";
 
-	private static final String MIXIN_CLASS_OLD = MIXIN_CLASS_PREFIX + "GameModeSelectionScreenMixinOld";
-	private static final String MIXIN_CLASS_NEW = MIXIN_CLASS_PREFIX + "GameModeSelectionScreenMixin";
+	private static final String GAME_MODE_SELECTION_SCREEN_MIXIN_CLASS_OLD_1 = MIXIN_CLASS_PREFIX + "GameModeSelectionScreenMixinOld";
+	private static final String GAME_MODE_SELECTION_SCREEN_MIXIN_CLASS_OLD_2 = MIXIN_CLASS_PREFIX + "GameModeSelectionScreenMixinOld2";
+	private static final String GAME_MODE_SELECTION_SCREEN_MIXIN_CLASS_NEW = MIXIN_CLASS_PREFIX + "GameModeSelectionScreenMixin";
+
+	private static final String KEYBOARD_MIXIN_CLASS_OLD = MIXIN_CLASS_PREFIX + "KeyboardMixinOld";
+	private static final String KEYBOARD_MIXIN_CLASS_NEW = MIXIN_CLASS_PREFIX + "KeyboardMixin";
 
 	private static final Predicate<Version> HAS_GAME_MODE_SELECTION_PARAMETER = createVersionCompatibility(">=1.20-alpha.23.16.a");
+	private static final Predicate<Version> HAS_PLAYER_ONLY_PERMISSION_LEVEL = createVersionCompatibility(">=1.21.2-alpha.24.39.a");
 
 	@Override
 	public void onLoad(String mixinPackage) {
@@ -38,10 +43,16 @@ public class GamemodeUnrestrictorMixinConfigPlugin implements IMixinConfigPlugin
 
 	@Override
 	public boolean shouldApplyMixin(String targetClass, String mixinClass) {
-		if (mixinClass.equals(MIXIN_CLASS_OLD)) {
+		if (mixinClass.equals(GAME_MODE_SELECTION_SCREEN_MIXIN_CLASS_OLD_1)) {
 			return !HAS_GAME_MODE_SELECTION_PARAMETER.test(getMinecraftVersion());
-		} else if (mixinClass.equals(MIXIN_CLASS_NEW)) {
-			return HAS_GAME_MODE_SELECTION_PARAMETER.test(getMinecraftVersion());
+		} else if (mixinClass.equals(GAME_MODE_SELECTION_SCREEN_MIXIN_CLASS_OLD_2)) {
+			return HAS_GAME_MODE_SELECTION_PARAMETER.test(getMinecraftVersion()) && !HAS_PLAYER_ONLY_PERMISSION_LEVEL.test(getMinecraftVersion());
+		} else if (mixinClass.equals(GAME_MODE_SELECTION_SCREEN_MIXIN_CLASS_NEW)) {
+			return HAS_GAME_MODE_SELECTION_PARAMETER.test(getMinecraftVersion()) && HAS_PLAYER_ONLY_PERMISSION_LEVEL.test(getMinecraftVersion());
+		} else if (mixinClass.equals(KEYBOARD_MIXIN_CLASS_OLD)) {
+			return !HAS_PLAYER_ONLY_PERMISSION_LEVEL.test(getMinecraftVersion());
+		} else if (mixinClass.equals(KEYBOARD_MIXIN_CLASS_NEW)) {
+			return HAS_PLAYER_ONLY_PERMISSION_LEVEL.test(getMinecraftVersion());
 		}
 
 		return true;
