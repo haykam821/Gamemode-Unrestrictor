@@ -21,9 +21,9 @@ import net.fabricmc.loader.api.metadata.version.VersionPredicate;
 public class GamemodeUnrestrictorMixinConfigPlugin implements IMixinConfigPlugin {
 	private static final String MIXIN_CLASS_PREFIX = "io.github.haykam821.gamemodeunrestrictor.mixin.";
 
-	private static final String GAME_MODE_SELECTION_SCREEN_MIXIN_CLASS_OLD_1 = MIXIN_CLASS_PREFIX + "GameModeSelectionScreenMixinOld";
-	private static final String GAME_MODE_SELECTION_SCREEN_MIXIN_CLASS_OLD_2 = MIXIN_CLASS_PREFIX + "GameModeSelectionScreenMixinOld2";
-	private static final String GAME_MODE_SELECTION_SCREEN_MIXIN_CLASS_NEW = MIXIN_CLASS_PREFIX + "GameModeSelectionScreenMixin";
+	private static final String GAME_MODE_SWITCHER_SCREEN_MIXIN_CLASS_OLD_1 = MIXIN_CLASS_PREFIX + "GameModeSwitcherScreenMixinOld";
+	private static final String GAME_MODE_SWITCHER_SCREEN_MIXIN_CLASS_OLD_2 = MIXIN_CLASS_PREFIX + "GameModeSwitcherScreenMixinOld2";
+	private static final String GAME_MODE_SWITCHER_SCREEN_MIXIN_CLASS_NEW = MIXIN_CLASS_PREFIX + "GameModeSwitcherScreenMixin";
 
 	private static final String KEYBOARD_MIXIN_CLASS_OLD = MIXIN_CLASS_PREFIX + "KeyboardMixinOld";
 	private static final String KEYBOARD_MIXIN_CLASS_NEW = MIXIN_CLASS_PREFIX + "KeyboardMixin";
@@ -43,11 +43,11 @@ public class GamemodeUnrestrictorMixinConfigPlugin implements IMixinConfigPlugin
 
 	@Override
 	public boolean shouldApplyMixin(String targetClass, String mixinClass) {
-		if (mixinClass.equals(GAME_MODE_SELECTION_SCREEN_MIXIN_CLASS_OLD_1)) {
+		if (mixinClass.equals(GAME_MODE_SWITCHER_SCREEN_MIXIN_CLASS_OLD_1)) {
 			return !HAS_GAME_MODE_SELECTION_PARAMETER.test(getMinecraftVersion());
-		} else if (mixinClass.equals(GAME_MODE_SELECTION_SCREEN_MIXIN_CLASS_OLD_2)) {
+		} else if (mixinClass.equals(GAME_MODE_SWITCHER_SCREEN_MIXIN_CLASS_OLD_2)) {
 			return HAS_GAME_MODE_SELECTION_PARAMETER.test(getMinecraftVersion()) && !HAS_PLAYER_ONLY_PERMISSION_LEVEL.test(getMinecraftVersion());
-		} else if (mixinClass.equals(GAME_MODE_SELECTION_SCREEN_MIXIN_CLASS_NEW)) {
+		} else if (mixinClass.equals(GAME_MODE_SWITCHER_SCREEN_MIXIN_CLASS_NEW)) {
 			return HAS_GAME_MODE_SELECTION_PARAMETER.test(getMinecraftVersion()) && HAS_PLAYER_ONLY_PERMISSION_LEVEL.test(getMinecraftVersion());
 		} else if (mixinClass.equals(KEYBOARD_MIXIN_CLASS_OLD)) {
 			return !HAS_PLAYER_ONLY_PERMISSION_LEVEL.test(getMinecraftVersion());

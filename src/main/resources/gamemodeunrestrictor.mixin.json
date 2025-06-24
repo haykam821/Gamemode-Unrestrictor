@@ -3,9 +3,9 @@
 	"package": "io.github.haykam821.gamemodeunrestrictor.mixin",
 	"compatibilityLevel": "JAVA_8",
 	"client": [
-		"GameModeSelectionScreenMixin",
-		"GameModeSelectionScreenMixinOld",
-		"GameModeSelectionScreenMixinOld2",
+		"GameModeSwitcherScreenMixin",
+		"GameModeSwitcherScreenMixinOld",
+		"GameModeSwitcherScreenMixinOld2",
 		"KeyboardMixin",
 		"KeyboardMixinOld"
 	],
